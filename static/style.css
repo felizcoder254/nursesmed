@@ -10,9 +10,8 @@ body {
   height: 100vh;
 }
 
+/* existing chat styles… */
 .chat-container {
-  width: 100%;
-  max-width: 600px;
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -99,4 +98,41 @@ header {
 
 #send-btn:hover {
   background: #021f3a;
+}
+
+/* === TOGGLE-STYLES BELOW === */
+
+/* toggle button in corner */
+#chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+#chat-toggle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* hide chat until toggled */
+.chat-container {
+  display: none;
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 300px;
+  height: 400px;
+  z-index: 999;
+}
+
+/* show when toggled */
+.chat-container.visible {
+  display: flex;
 }

@@ -7,9 +7,14 @@
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <div class="chat-container">
+  <!-- chat toggle button -->
+  <div id="chat-toggle">
+    <img src="/static/logo.png" alt="Open chat">
+  </div>
+
+  <!-- chat widget, hidden until toggled -->
+  <div class="chat-container" id="chat-container">
     <header>
-      <!-- Put your NURSESmed logo as static/logo.png -->
       <img src="/static/logo.png" alt="NURSESmed Logo" class="logo">
       <h1>NURSESmed Assistant</h1>
       <p class="tagline">
