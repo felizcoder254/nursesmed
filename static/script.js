@@ -1,11 +1,11 @@
-// toggle logic – leave your chat functions untouched
-const toggleBtn   = document.getElementById('chat-toggle');
-const chatWidget  = document.getElementById('chat-container');
+// Toggle logic (unchanged)
+const toggleBtn  = document.getElementById('chat-toggle');
+const chatWidget = document.getElementById('chat-container');
 toggleBtn.addEventListener('click', () => {
   chatWidget.classList.toggle('visible');
 });
 
-// --- your existing code below ---
+// --- your existing chat code below ---
 const chatBox = document.getElementById("chat-box");
 const inputEl = document.getElementById("user-input");
 const sendBtn = document.getElementById("send-btn");
