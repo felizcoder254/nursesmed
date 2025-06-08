@@ -1,49 +1,104 @@
-/* reset */
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* ========== Variables & Reset ========== */
+:root {
+  --primary:    #002B55;
+  --accent:     #fdb813;
+  --bg-light:   #ffffff;
+  --bg-muted:   #eef2f5;
+  --radius:     24px;
+  --shadow:     0 4px 12px rgba(0,0,0,0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: var(--bg-muted);
+}
+
+/* ========== TOGGLE BUTTON ========== */
+#chat-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 64px;
+  height: 64px;
+  background: var(--primary);
+  border-radius: 50%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-}
-
-/* existing chat styles… */
-.chat-container {
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 1000;
   overflow: hidden;
+  text-indent: -9999px; /* hides any stray text */
 }
 
-header {
-  background: #002B55;
-  color: #ffffff;
-  padding: 16px;
-  text-align: center;
+#chat-toggle img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
-.logo {
-  max-height: 50px;
+#chat-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
 
-.tagline {
-  font-size: 0.9rem;
-  margin-top: 8px;
-  line-height: 1.4;
+/* ========== CHAT WINDOW ========== */
+.chat-container {
+  display: none;
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  width: 360px;
+  height: 480px;
+  background: var(--bg-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  flex-direction: column;
+  z-index: 999;
 }
 
+.chat-container.visible {
+  display: flex;
+}
+
+/* ========== HEADER ========== */
+.chat-container header {
+  background: linear-gradient(135deg, #006494, #001f3f);
+  color: var(--bg-light);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chat-container header .logo {
+  max-height: 36px;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+.chat-container header h1 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* ========== CHAT AREA ========== */
 #chat-box {
   flex: 1;
   padding: 16px;
+  background: var(--bg-muted);
   overflow-y: auto;
-  background: #eef2f5;
 }
 
+/* ========== MESSAGES ========== */
 .message {
   margin-bottom: 12px;
   display: flex;
@@ -59,23 +114,24 @@ header {
 
 .message .text {
   max-width: 75%;
-  padding: 8px 12px;
-  border-radius: 16px;
+  padding: 10px 14px;
+  border-radius: 18px;
   line-height: 1.4;
 }
 
 .message.user .text {
-  background: #002B55;
-  color: #ffffff;
-  border-radius: 16px 16px 0 16px;
+  background: var(--primary);
+  color: var(--bg-light);
+  border-radius: 18px 18px 0 18px;
 }
 
 .message.assistant .text {
   background: #e2e2e2;
-  color: #000000;
-  border-radius: 16px 16px 16px 0;
+  color: #000;
+  border-radius: 18px 18px 18px 0;
 }
 
+/* ========== INPUT AREA ========== */
 .input-area {
   display: flex;
   border-top: 1px solid #ccc;
@@ -86,53 +142,17 @@ header {
   padding: 12px;
   font-size: 1rem;
   border: none;
+  outline: none;
 }
 
 #send-btn {
   padding: 0 20px;
-  background: #002B55;
-  color: #fff;
+  background: var(--primary);
+  color: var(--bg-light);
   border: none;
   cursor: pointer;
 }
 
 #send-btn:hover {
   background: #021f3a;
-}
-
-/* === TOGGLE-STYLES BELOW === */
-
-/* toggle button in corner */
-#chat-toggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  cursor: pointer;
-  z-index: 1000;
-}
-
-#chat-toggle img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-/* hide chat until toggled */
-.chat-container {
-  display: none;
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  width: 300px;
-  height: 400px;
-  z-index: 999;
-}
-
-/* show when toggled */
-.chat-container.visible {
-  display: flex;
 }
